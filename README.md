@@ -1,2 +1,2 @@
 # animated-onboarding-screens
-Animated Onboarding Screens build with React Native and TypeScript
+Animated Onboarding Screens build with React Native and TypeScript 
