@@ -10,13 +10,13 @@ import Input from '../../components/Input/styles';
 import { Container } from './styles';
 
 export default function NewNaver() {
+  const [job_role, setJobRole] = useState('');
+  const [admission_date, setAdmissionDate] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [project, setProject] = useState('');
   const [name, setName] = useState('');
-  const [position, setPosition] = useState('');
-  const [age, setAge] = useState('');
-  const [companyTime, setCompanyTime] = useState('');
-  const [projects, setProjects] = useState('');
-  const [photo, setPhoto] = useState('');
-  const [confirmation, setConfirmation] = useState(true);
+  const [url, setUrl] = useState('');
+  const [confirmation, setConfirmation] = useState(false);
 
   return (
     <>
@@ -47,63 +47,63 @@ export default function NewNaver() {
             </div>
 
             <div>
-              <label htmlFor="position">Cargo</label>
+              <label htmlFor="job_role">Cargo</label>
               <Input
-                id="position"
+                id="job_role"
                 placeholder="Cargo"
-                value={position}
-                onChange={(e) => setPosition(e.target.value)}
+                value={job_role}
+                onChange={(e) => setJobRole(e.target.value)}
                 small
               />
             </div>
 
             <div>
-              <label htmlFor="age">Idade</label>
+              <label htmlFor="birthdate">Idade</label>
               <Input
-                id="age"
+                id="birthdate"
                 placeholder="Idade"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
+                value={birthdate}
+                onChange={(e) => setBirthdate(e.target.value)}
                 small
               />
             </div>
 
             <div>
-              <label htmlFor="companyTime">Tempo de empresa</label>
+              <label htmlFor="admission_date">Tempo de empresa</label>
               <Input
-                id="companyTime"
+                id="admission_date"
                 placeholder="Tempo de empresa"
-                value={companyTime}
-                onChange={(e) => setCompanyTime(e.target.value)}
+                value={admission_date}
+                onChange={(e) => setAdmissionDate(e.target.value)}
                 small
               />
             </div>
 
             <div>
-              <label htmlFor="projects">Projetos que participou</label>
+              <label htmlFor="project">Projetos que participou</label>
               <Input
-                id="projects"
+                id="project"
                 placeholder="Projetos que participou"
-                value={projects}
-                onChange={(e) => setProjects(e.target.value)}
+                value={project}
+                onChange={(e) => setProject(e.target.value)}
                 small
               />
             </div>
 
             <div>
-              <label htmlFor="photo">URL da foto do Naver</label>
+              <label htmlFor="url">URL da foto do Naver</label>
               <Input
-                id="photo"
+                id="url"
                 placeholder="URL da foto do Naver"
-                value={photo}
-                onChange={(e) => setPhoto(e.target.value)}
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
                 small
               />
             </div>
           </section>
 
           <footer>
-            <Button>Salvar</Button>
+            <Button type="submit">Salvar</Button>
           </footer>
         </form>
       </Container>
