@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import Input from '../../components/Input';
+import Input from '../../components/Input/styles';
 
 import Button from '../../components/Button/styles';
 
@@ -14,8 +14,8 @@ import { Container } from './styles';
 export default function Logon() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
   const [inputError, setInputError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
 
@@ -52,23 +52,29 @@ export default function Logon() {
       <form onSubmit={handleSubmit}>
         <img src={logo} alt="Nave Logo" />
 
-        <Input
-          name="email"
-          type="email"
-          label="E-mail"
-          placeholder="E-mail"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <div>
+          <label htmlFor="email">E-mail</label>
+          <Input
+            id="email"
+            type="email"
+            label="E-mail"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
 
-        <Input
-          name="password"
-          type="password"
-          label="Senha"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <div>
+          <label htmlFor="password">Senha</label>
+          <Input
+            id="password"
+            type="password"
+            label="Senha"
+            placeholder="Senha"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
 
         {inputError && <span>{inputError}</span>}
 
