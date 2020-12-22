@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 
+import api from '../../services/api';
+
 import Button from '../../components/Button/styles';
 import Header from '../../components/Header';
 import ConfirmationDialog from '../../components/ConfirmationDialog';
@@ -18,6 +20,45 @@ export default function NewNaver() {
   const [url, setUrl] = useState('');
   const [confirmation, setConfirmation] = useState(false);
 
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    function cleanAllInputFields() {
+      setJobRole('');
+      setAdmissionDate('');
+      setBirthdate('');
+      setProject('');
+      setName('');
+      setUrl('');
+    }
+
+    const data = {
+      job_role,
+      admission_date,
+      birthdate,
+      project,
+      name,
+      url,
+    };
+
+    const token = localStorage.getItem('@Navedex:Token');
+
+    try {
+      const response = await api.post('navers', data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 200) {
+        setConfirmation(true);
+        cleanAllInputFields();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <Header />
@@ -33,7 +74,7 @@ export default function NewNaver() {
           <h2>Adicionar Naver</h2>
         </header>
 
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleSubmit}>
           <section>
             <div>
               <label htmlFor="name">Nome</label>
