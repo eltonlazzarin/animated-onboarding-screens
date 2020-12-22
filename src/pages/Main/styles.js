@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
@@ -26,6 +26,13 @@ export const Container = styled.div`
   article {
     width: 281px;
     height: 420px;
+
+    button {
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
   }
 
   img {
@@ -49,5 +56,9 @@ export const Container = styled.div`
   svg {
     cursor: pointer;
     margin-right: 13px;
+  }
+
+  a {
+    margin-top: 5px;
   }
 `;
