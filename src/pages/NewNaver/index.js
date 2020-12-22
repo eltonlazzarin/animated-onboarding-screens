@@ -6,8 +6,11 @@ import api from '../../services/api';
 
 import Button from '../../components/Button/styles';
 import Header from '../../components/Header';
+import ErrorDialog from '../../components/ErrorDialog';
 import ConfirmationDialog from '../../components/ConfirmationDialog';
 import Input from '../../components/Input/styles';
+
+import dateMask from '../../utils/dateMask';
 
 import { Container } from './styles';
 
@@ -19,6 +22,7 @@ export default function NewNaver() {
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
   const [confirmation, setConfirmation] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -55,7 +59,7 @@ export default function NewNaver() {
         cleanAllInputFields();
       }
     } catch (error) {
-      console.log(error);
+      setErrorMessage(true);
     }
   }
 
@@ -65,6 +69,10 @@ export default function NewNaver() {
 
       {confirmation && (
         <ConfirmationDialog action="criado" setConfirmation={setConfirmation} />
+      )}
+
+      {errorMessage && (
+        <ErrorDialog action="criar" setErrorMessage={setErrorMessage} />
       )}
 
       <Container>
@@ -84,6 +92,7 @@ export default function NewNaver() {
                 placeholder="Nome"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
                 small
               />
             </div>
@@ -95,6 +104,7 @@ export default function NewNaver() {
                 placeholder="Cargo"
                 value={job_role}
                 onChange={(e) => setJobRole(e.target.value)}
+                required
                 small
               />
             </div>
@@ -104,8 +114,10 @@ export default function NewNaver() {
               <Input
                 id="birthdate"
                 placeholder="Idade"
-                value={birthdate}
+                value={dateMask(birthdate)}
                 onChange={(e) => setBirthdate(e.target.value)}
+                maxLength="10"
+                required
                 small
               />
             </div>
@@ -115,8 +127,10 @@ export default function NewNaver() {
               <Input
                 id="admission_date"
                 placeholder="Tempo de empresa"
-                value={admission_date}
+                value={dateMask(admission_date)}
                 onChange={(e) => setAdmissionDate(e.target.value)}
+                maxLength="10"
+                required
                 small
               />
             </div>
@@ -128,6 +142,7 @@ export default function NewNaver() {
                 placeholder="Projetos que participou"
                 value={project}
                 onChange={(e) => setProject(e.target.value)}
+                required
                 small
               />
             </div>
@@ -136,9 +151,11 @@ export default function NewNaver() {
               <label htmlFor="url">URL da foto do Naver</label>
               <Input
                 id="url"
+                type="url"
                 placeholder="URL da foto do Naver"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                required
                 small
               />
             </div>
