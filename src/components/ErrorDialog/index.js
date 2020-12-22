@@ -3,7 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 import Container from './styles';
 
-export default function ErrorDialog({ setErrorMessage, action }) {
+export default function ConfirmationDialog({ setErrorMessage, action }) {
   return (
     <Container>
       <div>
