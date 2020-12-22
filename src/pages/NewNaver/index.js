@@ -66,6 +66,7 @@ export default function NewNaver() {
       {confirmation && (
         <ConfirmationDialog action="criado" setConfirmation={setConfirmation} />
       )}
+
       <Container>
         <header>
           <Link to="/navers">
