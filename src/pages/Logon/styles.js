@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-items: center;
 
   form {
-    max-width: 448px;
+    width: 448px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,6 +20,19 @@ export const Container = styled.div`
     height: 70px;
     width: 270px;
     margin-bottom: 40px;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+  }
+
+  label {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--dark-gray);
+    margin-bottom: 4px;
   }
 
   span {
