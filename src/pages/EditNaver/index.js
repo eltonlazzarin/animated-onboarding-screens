@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
+
+import api from '../../services/api';
 
 import Button from '../../components/Button/styles';
 import Header from '../../components/Header';
+import ErrorDialog from '../../components/ErrorDialog';
 import ConfirmationDialog from '../../components/ConfirmationDialog';
 import Input from '../../components/Input/styles';
+
+import dateMask from '../../utils/dateMask';
+import parseDate from '../../utils/parseDate';
 
 import { Container } from './styles';
 
@@ -17,6 +23,72 @@ export default function EditNaver() {
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
   const [confirmation, setConfirmation] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
+
+  const [naverData, setNaverData] = useState({});
+
+  const { id } = useParams();
+
+  const token = localStorage.getItem('@Navedex:Token');
+
+  useEffect(() => {
+    api
+      .get(`navers/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setNaverData(response.data);
+      });
+
+    function initialInputNaverData() {
+      setJobRole(naverData.job_role);
+      setAdmissionDate(parseDate(naverData.admission_date));
+      setBirthdate(parseDate(naverData.birthdate));
+      setProject(naverData.project);
+      setName(naverData.name);
+      setUrl(naverData.url);
+    }
+
+    initialInputNaverData();
+  }, [
+    token,
+    id,
+    naverData.admission_date,
+    naverData.birthdate,
+    naverData.job_role,
+    naverData.name,
+    naverData.project,
+    naverData.url,
+  ]);
+
+  const data = {
+    job_role,
+    admission_date,
+    birthdate,
+    project,
+    name,
+    url,
+  };
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const response = await api.put(`navers/${id}`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.status === 200) {
+        setConfirmation(true);
+      }
+    } catch (error) {
+      setErrorMessage(true);
+    }
+  }
 
   return (
     <>
@@ -28,6 +100,11 @@ export default function EditNaver() {
           setConfirmation={setConfirmation}
         />
       )}
+
+      {errorMessage && (
+        <ErrorDialog action="atualizar" setErrorMessage={setErrorMessage} />
+      )}
+
       <Container>
         <header>
           <Link to="/navers">
@@ -36,7 +113,7 @@ export default function EditNaver() {
           <h2>Editar Naver</h2>
         </header>
 
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleSubmit}>
           <section>
             <div>
               <label htmlFor="name">Nome</label>
@@ -45,6 +122,7 @@ export default function EditNaver() {
                 placeholder="Nome"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
                 small
               />
             </div>
@@ -56,6 +134,7 @@ export default function EditNaver() {
                 placeholder="Cargo"
                 value={job_role}
                 onChange={(e) => setJobRole(e.target.value)}
+                required
                 small
               />
             </div>
@@ -65,8 +144,10 @@ export default function EditNaver() {
               <Input
                 id="birthdate"
                 placeholder="Idade"
-                value={birthdate}
+                value={dateMask(birthdate)}
                 onChange={(e) => setBirthdate(e.target.value)}
+                maxLength="10"
+                required
                 small
               />
             </div>
@@ -76,8 +157,10 @@ export default function EditNaver() {
               <Input
                 id="admission_date"
                 placeholder="Tempo de empresa"
-                value={admission_date}
+                value={dateMask(admission_date)}
                 onChange={(e) => setAdmissionDate(e.target.value)}
+                maxLength="10"
+                required
                 small
               />
             </div>
@@ -89,6 +172,7 @@ export default function EditNaver() {
                 placeholder="Projetos que participou"
                 value={project}
                 onChange={(e) => setProject(e.target.value)}
+                required
                 small
               />
             </div>
@@ -97,9 +181,11 @@ export default function EditNaver() {
               <label htmlFor="url">URL da foto do Naver</label>
               <Input
                 id="url"
+                type="url"
                 placeholder="URL da foto do Naver"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                required
                 small
               />
             </div>
