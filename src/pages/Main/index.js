@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaTrash, FaPen } from 'react-icons/fa';
+
+import api from '../../services/api';
 
 import Button from '../../components/Button/styles';
 import Header from '../../components/Header';
@@ -11,26 +13,39 @@ import ConfirmationDialog from '../../components/ConfirmationDialog';
 import { Container } from './styles';
 
 export default function Main() {
+  const [navers, setNavers] = useState([]);
   const [show, setShow] = useState(false);
   const [deleteNaver, setDeleteNaver] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  useEffect(() => {
+    const token = localStorage.getItem('@Navedex:Token');
+
+    api
+      .get('navers', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => setNavers(response.data));
+  }, [navers]);
 
   return (
     <>
       <Header />
       {show && <Modal show={show} setShow={setShow} />}
+
       {deleteNaver && (
         <DeleteDialog
           deleteNaver={deleteNaver}
           setDeleteNaver={setDeleteNaver}
         />
       )}
+
       {confirmation && (
         <ConfirmationDialog action="criado" setConfirmation={setConfirmation} />
       )}
+
       <Container>
         <div>
           <h3>Navers</h3>
@@ -41,103 +56,27 @@ export default function Main() {
         </div>
 
         <main>
-          <article>
-            <button onClick={() => setShow(true)}>
-              <img
-                src="https://avatars2.githubusercontent.com/u/53025782?s=460&u=4aa2f5d075b8c3b00a77dcc0c475809f99dca504&v=4"
-                alt="user"
-              />
-            </button>
+          {navers.map((naver) => (
+            <article key={naver.id}>
+              <button onClick={() => setShow(true)}>
+                <img src={naver.url} alt={naver.name} />
+              </button>
 
-            <strong>Juliano Reis</strong>
-            <p>Front-end Developer</p>
+              <strong>{naver.name}</strong>
+              <p>{naver.job_role}</p>
 
-            <footer>
-              <FaTrash
-                onClick={() => setDeleteNaver(true)}
-                size={18}
-                color="#212121"
-              />
-              <Link to="/editnaver/1">
-                <FaPen size={18} color="#212121" />
-              </Link>
-            </footer>
-          </article>
-
-          <article>
-            <img
-              src="https://avatars2.githubusercontent.com/u/53025782?s=460&u=4aa2f5d075b8c3b00a77dcc0c475809f99dca504&v=4"
-              alt="user"
-            />
-
-            <strong>Juliano Reis</strong>
-            <p>Front-end Developer</p>
-
-            <footer>
-              <FaTrash size={18} color="#212121" />
-              <FaPen size={18} color="#212121" />
-            </footer>
-          </article>
-
-          <article>
-            <img
-              src="https://avatars2.githubusercontent.com/u/53025782?s=460&u=4aa2f5d075b8c3b00a77dcc0c475809f99dca504&v=4"
-              alt="user"
-            />
-
-            <strong>Juliano Reis</strong>
-            <p>Front-end Developer</p>
-
-            <footer>
-              <FaTrash size={18} color="#212121" />
-              <FaPen size={18} color="#212121" />
-            </footer>
-          </article>
-
-          <article>
-            <img
-              src="https://avatars2.githubusercontent.com/u/53025782?s=460&u=4aa2f5d075b8c3b00a77dcc0c475809f99dca504&v=4"
-              alt="user"
-            />
-
-            <strong>Juliano Reis</strong>
-            <p>Front-end Developer</p>
-
-            <footer>
-              <FaTrash size={18} color="#212121" />
-              <FaPen size={18} color="#212121" />
-            </footer>
-          </article>
-
-          <article>
-            <img
-              src="https://avatars2.githubusercontent.com/u/53025782?s=460&u=4aa2f5d075b8c3b00a77dcc0c475809f99dca504&v=4"
-              alt="user"
-            />
-
-            <strong>Juliano Reis</strong>
-            <p>Front-end Developer</p>
-
-            <footer>
-              <FaTrash size={18} color="#212121" />
-              <FaPen size={18} color="#212121" />
-            </footer>
-          </article>
-
-          <article>
-            <img
-              src="https://avatars2.githubusercontent.com/u/53025782?s=460&u=4aa2f5d075b8c3b00a77dcc0c475809f99dca504&v=4"
-              alt="user"
-            />
-
-            <strong>Juliano Reis</strong>
-            <p>Front-end Developer</p>
-
-            <footer>
-              <FaTrash size={18} color="#212121" />
-              <FaPen size={18} color="#212121" />
-            </footer>
-          </article>
+              <footer>
+                <FaTrash
+                  onClick={() => setDeleteNaver(true)}
+                  size={18}
+                  color="#212121"
+                />
+                <Link to={`/editnaver/${naver.id}`}>
+                  <FaPen size={18} color="#212121" />
+                </Link>
+              </footer>
+            </article>
+          ))}
         </main>
       </Container>
     </>
