@@ -21,6 +21,11 @@ const Container = styled.div`
     height: 503px;
   }
 
+  img {
+    object-fit: cover;
+    width: 31.56rem;
+  }
+
   span {
     position: absolute;
     right: 23px;
