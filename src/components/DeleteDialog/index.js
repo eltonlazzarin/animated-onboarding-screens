@@ -1,10 +1,25 @@
 import React from 'react';
 
+import api from '../../services/api';
+
 import Button, { LightButton } from '../../components/Button/styles';
 
 import Container from './styles';
 
-export default function DeleteDialog({ setDeleteNaver }) {
+export default function DeleteDialog({ setDeleteNaver, setConfirmation, id }) {
+  async function getNaverData() {
+    const token = localStorage.getItem('@Navedex:Token');
+
+    await api.delete(`navers/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    setDeleteNaver(false);
+    setConfirmation(true);
+  }
+
   return (
     <Container>
       <div>
@@ -15,7 +30,7 @@ export default function DeleteDialog({ setDeleteNaver }) {
           <LightButton onClick={() => setDeleteNaver(false)}>
             Cancelar
           </LightButton>
-          <Button onClick={() => {}}>Excluir</Button>
+          <Button onClick={getNaverData}>Excluir</Button>
         </footer>
       </div>
     </Container>
