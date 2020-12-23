@@ -8,7 +8,7 @@ import parseDate from '../../utils/parseDate';
 
 import Container from './styles';
 
-export default function Modal({ setShow, id }) {
+export default function Modal({ setShow, setDeleteNaver, id }) {
   const [naver, setNaver] = useState({});
 
   useEffect(() => {
@@ -26,6 +26,10 @@ export default function Modal({ setShow, id }) {
 
     getNaverData();
   }, [naver, id]);
+
+  function onpenDeleteDialog() {
+    setDeleteNaver(true);
+  }
 
   return (
     <Container>
@@ -52,7 +56,7 @@ export default function Modal({ setShow, id }) {
             <p>{naver.project}</p>
 
             <footer>
-              <FaTrash size={18} color="#212121" />
+              <FaTrash onClick={onpenDeleteDialog} size={18} color="#212121" />
               <Link to={`/editnaver/${naver.id}`}>
                 <FaPen size={18} color="#212121" />
               </Link>
