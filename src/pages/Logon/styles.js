@@ -7,19 +7,19 @@ export const Container = styled.div`
   align-items: center;
 
   form {
-    width: 448px;
+    width: 28rem;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border: 1px solid var(--dark-gray);
-    padding: 32px;
+    border: 0.06rem solid var(--dark-gray);
+    padding: 2rem;
   }
 
   img {
-    height: 70px;
-    width: 270px;
-    margin-bottom: 40px;
+    height: 4.37rem;
+    width: 16.87rem;
+    margin-bottom: 2.5rem;
   }
 
   div {
@@ -29,14 +29,14 @@ export const Container = styled.div`
   }
 
   label {
-    font-size: 14px;
+    font-size: 0.87rem;
     font-weight: bold;
     color: var(--dark-gray);
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem;
   }
 
   span {
     color: var(--dark-gray);
-    margin-bottom: 14px;
+    margin-bottom: 0.87rem;
   }
 `;

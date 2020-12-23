@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 1220px;
-  margin: 64px auto;
+  max-width: 76.25rem;
+  margin: 4rem auto;
 
   h3 {
-    font-size: 40px;
+    font-size: 2.5rem;
     font-weight: bold;
   }
 
@@ -19,13 +19,13 @@ export const Container = styled.div`
   main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 32px;
-    padding-top: 32px;
+    grid-gap: 2rem;
+    padding-top: 2rem;
   }
 
   article {
-    width: 281px;
-    height: 420px;
+    width: 17.56rem;
+    height: 26.25rem;
 
     div {
       cursor: pointer;
@@ -33,16 +33,16 @@ export const Container = styled.div`
   }
 
   img {
-    height: 300px;
-    width: 281px;
-    margin-bottom: 16px;
+    height: 18.75rem;
+    width: 17.56rem;
+    margin-bottom: 1rem;
     object-fit: cover;
   }
 
   p {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: normal;
-    padding: 4px 0 10px 0;
+    padding: 0.25rem 0 0.62rem 0;
   }
 
   footer {
@@ -52,10 +52,10 @@ export const Container = styled.div`
 
   svg {
     cursor: pointer;
-    margin-right: 13px;
+    margin-right: 0.81rem;
   }
 
   a {
-    margin-top: 5px;
+    margin-top: 0.31rem;
   }
 `;
