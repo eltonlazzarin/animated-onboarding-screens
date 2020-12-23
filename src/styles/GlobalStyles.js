@@ -21,5 +21,6 @@ export default createGlobalStyle`
     --medium-gray:  #424242;
     --dark-gray: #212121;
     --white: #fff;
+    --modal-background: rgba(0, 0, 0, 0.5);
   }
 `;
