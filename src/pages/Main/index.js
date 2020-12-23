@@ -36,6 +36,11 @@ export default function Main() {
     setNaverID(id);
   }
 
+  function handleModalDeleteNaver(id) {
+    setDeleteNaver(true);
+    setNaverID(id);
+  }
+
   return (
     <>
       <Header />
@@ -45,11 +50,16 @@ export default function Main() {
         <DeleteDialog
           deleteNaver={deleteNaver}
           setDeleteNaver={setDeleteNaver}
+          setConfirmation={setConfirmation}
+          id={naverID}
         />
       )}
 
       {confirmation && (
-        <ConfirmationDialog action="criado" setConfirmation={setConfirmation} />
+        <ConfirmationDialog
+          action="excluído"
+          setConfirmation={setConfirmation}
+        />
       )}
 
       <Container>
@@ -73,7 +83,7 @@ export default function Main() {
 
               <footer>
                 <FaTrash
-                  onClick={() => setDeleteNaver(true)}
+                  onClick={() => handleModalDeleteNaver(naver.id)}
                   size={18}
                   color="#212121"
                 />
