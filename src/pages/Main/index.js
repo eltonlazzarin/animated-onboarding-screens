@@ -44,13 +44,15 @@ export default function Main() {
   return (
     <>
       <Header />
-      {show && <Modal show={show} setShow={setShow} id={naverID} />}
+      {show && (
+        <Modal setShow={setShow} setDeleteNaver={setDeleteNaver} id={naverID} />
+      )}
 
       {deleteNaver && (
         <DeleteDialog
-          deleteNaver={deleteNaver}
           setDeleteNaver={setDeleteNaver}
           setConfirmation={setConfirmation}
+          setShow={setShow}
           id={naverID}
         />
       )}
