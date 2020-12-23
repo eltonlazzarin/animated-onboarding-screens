@@ -41,7 +41,7 @@ export default function Modal({ setShow, setDeleteNaver, id }) {
             <AiOutlineClose
               onClick={() => setShow(false)}
               size={24}
-              color={'#212121'}
+              color="#212121"
             />
           </span>
 

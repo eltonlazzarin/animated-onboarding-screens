@@ -11,13 +11,20 @@ export default function ConfirmationDialog({ setConfirmation, action }) {
           <AiOutlineClose
             onClick={() => setConfirmation(false)}
             size={24}
-            color={'#212121'}
+            color="#212121"
           />
         </span>
 
         <main>
-          <h2>Naver {action}</h2>
-          <p>Naver {action} com sucesso!</p>
+          <h2>
+            Naver
+            {action}
+          </h2>
+          <p>
+            Naver
+            {action}
+            com sucesso!
+          </p>
         </main>
       </div>
     </Container>

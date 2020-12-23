@@ -2,7 +2,7 @@ import React from 'react';
 
 import api from '../../services/api';
 
-import Button, { LightButton } from '../../components/Button/styles';
+import Button, { LightButton } from '../Button/styles';
 
 import Container from './styles';
 

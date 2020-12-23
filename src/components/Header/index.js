@@ -18,7 +18,9 @@ export default function Header() {
     <Container>
       <header>
         <img src={logo} alt="Nave Logo" />
-        <button onClick={handleLogout}>Sair</button>
+        <button type="button" onClick={handleLogout}>
+          Sair
+        </button>
       </header>
     </Container>
   );

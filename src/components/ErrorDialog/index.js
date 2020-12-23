@@ -11,12 +11,15 @@ export default function ConfirmationDialog({ setErrorMessage, action }) {
           <AiOutlineClose
             onClick={() => setErrorMessage(false)}
             size={24}
-            color={'#212121'}
+            color="#212121"
           />
         </span>
 
         <main>
-          <h2>Erro ao {action}</h2>
+          <h2>
+            Erro ao
+            {action}
+          </h2>
           <p>Verifique os dados inseridos ou a sua conexão com a internet.</p>
         </main>
       </div>
