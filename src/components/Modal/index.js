@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaTrash, FaPen } from 'react-icons/fa';
 
+import api from '../../services/api';
+import parseDate from '../../utils/parseDate';
+
 import Container from './styles';
 
-export default function Modal({ setShow }) {
+export default function Modal({ setShow, id }) {
+  const [naver, setNaver] = useState({});
+
+  useEffect(() => {
+    async function getNaverData() {
+      const token = localStorage.getItem('@Navedex:Token');
+
+      const response = await api.get(`navers/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setNaver(response.data);
+    }
+
+    getNaverData();
+  }, [naver, id]);
+
   return (
     <Container>
       <div>
-        <img
-          src="https://avatars2.githubusercontent.com/u/53025782?s=460&u=4aa2f5d075b8c3b00a77dcc0c475809f99dca504&v=4"
-          alt="Elton"
-        />
+        <img src={naver.url} alt={naver.name} />
 
         <section>
           <span>
@@ -24,18 +42,18 @@ export default function Modal({ setShow }) {
           </span>
 
           <main>
-            <h2>Juliano Reis</h2>
-            <p>Frontend Developer</p>
+            <h2>{naver.name}</h2>
+            <p>{naver.job_role}</p>
             <strong>Idade</strong>
-            <p>Lorem Ipsum</p>
+            <p>{parseDate(naver.birthdate)}</p>
             <strong>Tempo de empresa</strong>
-            <p>Lorem Ipsum</p>
+            <p>{parseDate(naver.admission_date)}</p>
             <strong>Projetos que participou</strong>
-            <p>Lorem Ipsum</p>
+            <p>{naver.project}</p>
 
             <footer>
               <FaTrash size={18} color="#212121" />
-              <Link to="/editnaver/1">
+              <Link to={`/editnaver/${naver.id}`}>
                 <FaPen size={18} color="#212121" />
               </Link>
             </footer>
