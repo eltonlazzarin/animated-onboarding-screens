@@ -10,7 +10,7 @@ export const Container = styled.div`
     font-weight: bold;
   }
 
-  div {
+  header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,10 +27,7 @@ export const Container = styled.div`
     width: 281px;
     height: 420px;
 
-    button {
-      background: none;
-      border: none;
-      outline: none;
+    div {
       cursor: pointer;
     }
   }
