@@ -16,15 +16,8 @@ export default function ConfirmationDialog({ setConfirmation, action }) {
         </span>
 
         <main>
-          <h2>
-            Naver
-            {action}
-          </h2>
-          <p>
-            Naver
-            {action}
-            com sucesso!
-          </p>
+          <h2>Naver {action}</h2>
+          <p>Naver {action} com sucesso!</p>
         </main>
       </div>
     </Container>

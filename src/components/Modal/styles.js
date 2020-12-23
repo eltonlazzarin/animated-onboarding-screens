@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--modal-background);
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -16,9 +16,9 @@ const Container = styled.div`
 
     position: relative;
     margin: 0 auto;
-    background: #fff;
-    width: 1006px;
-    height: 503px;
+    background: var(--white);
+    width: 62.87rem;
+    height: 31.44rem;
   }
 
   img {
@@ -28,35 +28,35 @@ const Container = styled.div`
 
   span {
     position: absolute;
-    right: 23px;
-    top: 16px;
+    right: 1.44rem;
+    top: 1rem;
     cursor: pointer;
   }
 
   main {
-    margin-left: 30px;
+    margin-left: 1.87rem;
   }
 
   h2 {
-    margin: 32px 0 10px 0;
+    margin: 2rem 0 0.62rem 0;
   }
 
   p {
-    margin: 10px 0 24px 0;
+    margin: 0.62rem 0 1.5rem 0;
   }
 
   footer {
     display: flex;
     align-items: center;
-    margin-top: 147px;
+    margin-top: 9.18rem;
 
     svg {
-      margin-right: 13px;
+      margin-right: 0.81rem;
       cursor: pointer;
     }
 
     a {
-      margin-top: 5px;
+      margin-top: 0.31rem;
     }
   }
 `;

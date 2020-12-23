@@ -16,10 +16,7 @@ export default function ConfirmationDialog({ setErrorMessage, action }) {
         </span>
 
         <main>
-          <h2>
-            Erro ao
-            {action}
-          </h2>
+          <h2>Erro ao {action}</h2>
           <p>Verifique os dados inseridos ou a sua conexão com a internet.</p>
         </main>
       </div>

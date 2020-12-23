@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: var(--modal-background);
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -15,26 +15,26 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    padding: 32px;
-    background: #fff;
-    width: 593px;
-    height: 233px;
+    padding: 2rem;
+    background: var(--white);
+    width: 37.06rem;
+    height: 14.56rem;
   }
 
   main {
-    margin-left: 30px;
+    margin-left: 1.87rem;
   }
 
   p {
-    margin-top: 34px;
+    margin-top: 2.12rem;
   }
 
   footer {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 24px;
-    margin-left: 145px;
-    margin-top: 50px;
+    column-gap: 1.5rem;
+    margin-left: 9.062rem;
+    margin-top: 3.12rem;
   }
 `;
 

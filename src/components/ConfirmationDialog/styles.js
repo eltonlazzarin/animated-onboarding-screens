@@ -16,37 +16,31 @@ const Container = styled.div`
 
     position: relative;
     margin: 0 auto;
-    background: #fff;
-    padding: 32px;
-    width: 593px;
-    height: 160px;
+    background: var(--white);
+    padding: 2rem;
+    width: 37.06rem;
+    height: 10rem;
   }
 
   span {
     position: absolute;
-    right: 23px;
-    top: 16px;
+    right: 1.43rem;
+    top: 1rem;
     cursor: pointer;
   }
 
-  main {
-  }
-
-  h2 {
-  }
-
   p {
-    margin-top: 24px;
-    line-height: 36px;
+    margin-top: 1.5rem;
+    line-height: 2.25rem;
   }
 
   footer {
     display: flex;
     align-items: center;
-    margin-top: 147px;
+    margin-top: 9.19rem;
 
     svg {
-      margin-right: 13px;
+      margin-right: 0.81rem;
       cursor: pointer;
     }
   }
