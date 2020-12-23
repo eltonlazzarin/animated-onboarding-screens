@@ -17,6 +17,7 @@ export default function Main() {
   const [show, setShow] = useState(false);
   const [deleteNaver, setDeleteNaver] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
+  const [naverID, setNaverID] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('@Navedex:Token');
@@ -30,10 +31,15 @@ export default function Main() {
       .then((response) => setNavers(response.data));
   }, [navers]);
 
+  function handleModalNaverData(id) {
+    setShow(true);
+    setNaverID(id);
+  }
+
   return (
     <>
       <Header />
-      {show && <Modal show={show} setShow={setShow} />}
+      {show && <Modal show={show} setShow={setShow} id={naverID} />}
 
       {deleteNaver && (
         <DeleteDialog
@@ -47,20 +53,20 @@ export default function Main() {
       )}
 
       <Container>
-        <div>
+        <header>
           <h3>Navers</h3>
 
           <Link to="/createnaver">
             <Button>Adicionar Naver</Button>
           </Link>
-        </div>
+        </header>
 
         <main>
           {navers.map((naver) => (
             <article key={naver.id}>
-              <button onClick={() => setShow(true)}>
+              <div onClick={() => handleModalNaverData(naver.id)}>
                 <img src={naver.url} alt={naver.name} />
-              </button>
+              </div>
 
               <strong>{naver.name}</strong>
               <p>{naver.job_role}</p>
