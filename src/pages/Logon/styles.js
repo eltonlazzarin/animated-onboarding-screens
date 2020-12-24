@@ -39,4 +39,19 @@ export const Container = styled.div`
     color: var(--dark-gray);
     margin-bottom: 0.87rem;
   }
+
+  @media (max-width: 46rem) {
+    form {
+      width: 90vw;
+    }
+
+    span {
+      font-size: 0.9rem;
+    }
+
+    input,
+    button {
+      width: 18.75rem;
+    }
+  }
 `;
