@@ -13,7 +13,6 @@ const Container = styled.div`
 
   div {
     display: flex;
-
     position: relative;
     margin: 0 auto;
     background: var(--white);
@@ -57,6 +56,38 @@ const Container = styled.div`
 
     a {
       margin-top: 0.31rem;
+    }
+  }
+
+  @media (max-width: 46rem) {
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 90vw;
+      height: 540px;
+    }
+
+    span {
+      top: 14.5rem;
+    }
+
+    img {
+      width: 90vw;
+      height: 37vh;
+    }
+
+    h2 {
+      font-size: 1.37rem;
+      margin-top: 1rem;
+    }
+
+    p {
+      font-size: 0.81rem;
+      margin-bottom: 1.12rem;
+    }
+
+    footer {
+      margin-top: 0.875rem;
     }
   }
 `;
