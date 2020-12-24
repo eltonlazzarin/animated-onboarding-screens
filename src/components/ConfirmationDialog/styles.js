@@ -44,6 +44,12 @@ const Container = styled.div`
       cursor: pointer;
     }
   }
+
+  @media (max-width: 46rem) {
+    div {
+      width: 90vw;
+    }
+  }
 `;
 
 export default Container;
