@@ -7,7 +7,7 @@ import Button, { LightButton } from '../Button/styles';
 import Container from './styles';
 
 export default function DeleteDialog({
-  setShow,
+  setShowModal,
   setDeleteNaver,
   setConfirmation,
   id,
@@ -23,7 +23,7 @@ export default function DeleteDialog({
 
     setDeleteNaver(false);
     setConfirmation(true);
-    setShow(false);
+    setShowModal(false);
   }
 
   return (

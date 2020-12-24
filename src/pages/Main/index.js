@@ -6,7 +6,7 @@ import api from '../../services/api';
 
 import Button from '../../components/Button/styles';
 import Header from '../../components/Header';
-import Modal from '../../components/Modal';
+import NaverModal from '../../components/NaverModal';
 import DeleteDialog from '../../components/DeleteDialog';
 import ConfirmationDialog from '../../components/ConfirmationDialog';
 
@@ -14,7 +14,7 @@ import { Container } from './styles';
 
 export default function Main() {
   const [navers, setNavers] = useState([]);
-  const [show, setShow] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [deleteNaver, setDeleteNaver] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
   const [naverID, setNaverID] = useState('');
@@ -32,7 +32,7 @@ export default function Main() {
   }, [navers]);
 
   function handleModalNaverData(id) {
-    setShow(true);
+    setShowModal(true);
     setNaverID(id);
   }
 
@@ -44,15 +44,19 @@ export default function Main() {
   return (
     <>
       <Header />
-      {show && (
-        <Modal setShow={setShow} setDeleteNaver={setDeleteNaver} id={naverID} />
+      {showModal && (
+        <NaverModal
+          setShowModal={setShowModal}
+          setDeleteNaver={setDeleteNaver}
+          id={naverID}
+        />
       )}
 
       {deleteNaver && (
         <DeleteDialog
           setDeleteNaver={setDeleteNaver}
           setConfirmation={setConfirmation}
-          setShow={setShow}
+          setshowModal={setShowModal}
           id={naverID}
         />
       )}
