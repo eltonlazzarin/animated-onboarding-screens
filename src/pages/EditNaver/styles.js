@@ -44,4 +44,27 @@ export const Container = styled.div`
     align-items: center;
     margin: 2rem 0 0 25.93rem;
   }
+
+  @media (max-width: 46rem) {
+    width: 90vw;
+
+    section {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding-top: 2rem;
+    }
+
+    input {
+      width: 90vw;
+    }
+
+    footer {
+      margin: 2rem 0 2rem 0;
+    }
+
+    button {
+      width: 90vw;
+      margin-bottom: 2rem;
+    }
+  }
 `;
