@@ -9,6 +9,11 @@ const Button = styled.button`
   font-weight: bold;
   color: var(--white);
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+    transition: opacity 0.5s;
+  }
 `;
 
 export const LightButton = styled(Button)`
