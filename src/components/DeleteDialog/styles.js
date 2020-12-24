@@ -36,6 +36,25 @@ const Container = styled.div`
     margin-left: 9.062rem;
     margin-top: 3.12rem;
   }
+
+  @media (max-width: 46rem) {
+    div {
+      width: 90vw;
+      height: 14.8rem;
+    }
+
+    footer {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 1.5rem;
+      margin-left: 0;
+      margin-top: 2rem;
+    }
+
+    button {
+      width: 7.1rem;
+    }
+  }
 `;
 
 export default Container;
