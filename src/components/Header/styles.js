@@ -23,6 +23,10 @@ const Container = styled.div`
     color: var(--dark-gray);
     cursor: pointer;
   }
+
+  @media (max-width: 46rem) {
+    width: 90vw;
+  }
 `;
 
 export default Container;
