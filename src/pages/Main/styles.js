@@ -58,4 +58,26 @@ export const Container = styled.div`
   a {
     margin-top: 0.31rem;
   }
+
+  @media (max-width: 46rem) {
+    width: 90vw;
+
+    h3 {
+      font-size: 2rem;
+    }
+
+    button {
+      height: 9vw;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding-top: 2rem;
+    }
+
+    img {
+      width: 90vw;
+    }
+  }
 `;
