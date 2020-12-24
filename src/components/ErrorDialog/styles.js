@@ -13,7 +13,6 @@ const Container = styled.div`
 
   div {
     display: flex;
-
     position: relative;
     margin: 0 auto;
     background: var(--white);
@@ -42,6 +41,13 @@ const Container = styled.div`
     svg {
       margin-right: 0.81rem;
       cursor: pointer;
+    }
+  }
+
+  @media (max-width: 46rem) {
+    div {
+      width: 90vw;
+      height: 11.56rem;
     }
   }
 `;
