@@ -56,7 +56,7 @@ export default function Main() {
         <DeleteDialog
           setDeleteNaver={setDeleteNaver}
           setConfirmation={setConfirmation}
-          setshowModal={setShowModal}
+          setShowModal={setShowModal}
           id={naverID}
         />
       )}
