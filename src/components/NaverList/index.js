@@ -4,6 +4,8 @@ import { FaTrash, FaPen } from 'react-icons/fa';
 
 import { Context } from '../../store';
 
+import EmptyNaverList from '../EmptyNaverList';
+
 import { Container } from './styles';
 
 export default function NaverList({ setNaverID }) {
@@ -21,29 +23,33 @@ export default function NaverList({ setNaverID }) {
 
   return (
     <Container>
-      <main>
-        {state.navers.map((naver) => (
-          <article key={naver.id}>
-            <div onClick={() => handleModalNaverData(naver.id)}>
-              <img src={naver.url} alt={naver.name} />
-            </div>
+      {state.navers.length === 0 ? (
+        <EmptyNaverList />
+      ) : (
+        <main>
+          {state.navers.map((naver) => (
+            <article key={naver.id}>
+              <div onClick={() => handleModalNaverData(naver.id)}>
+                <img src={naver.url} alt={naver.name} />
+              </div>
 
-            <strong>{naver.name}</strong>
-            <p>{naver.job_role}</p>
+              <strong>{naver.name}</strong>
+              <p>{naver.job_role}</p>
 
-            <footer>
-              <FaTrash
-                onClick={() => handleModalDeleteNaver(naver.id)}
-                size={18}
-                color="#212121"
-              />
-              <Link to={`/editnaver/${naver.id}`}>
-                <FaPen size={18} color="#212121" />
-              </Link>
-            </footer>
-          </article>
-        ))}
-      </main>
+              <footer>
+                <FaTrash
+                  onClick={() => handleModalDeleteNaver(naver.id)}
+                  size={18}
+                  color="#212121"
+                />
+                <Link to={`/editnaver/${naver.id}`}>
+                  <FaPen size={18} color="#212121" />
+                </Link>
+              </footer>
+            </article>
+          ))}
+        </main>
+      )}
     </Container>
   );
 }
