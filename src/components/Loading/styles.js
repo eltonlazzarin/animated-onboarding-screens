@@ -9,22 +9,22 @@ const Container = styled.div`
 
   @keyframes loading {
     0% {
-      margin-top: 20px;
+      margin-top: 1.25rem;
     }
     20% {
-      margin-top: 40px;
+      margin-top: 2.5rem;
     }
     40% {
-      margin-top: 20px;
+      margin-top: 1.25rem;
     }
     60% {
-      margin-top: 40px;
+      margin-top: 2.5rem;
     }
     80% {
-      margin-top: 20px;
+      margin-top: 1.25rem;
     }
     100% {
-      margin-top: 40px;
+      margin-top: 2.5rem;
     }
   }
 
