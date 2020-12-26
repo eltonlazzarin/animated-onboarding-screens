@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaTrash, FaPen } from 'react-icons/fa';
 
 import api from '../../services/api';
+import { Context } from '../../store';
 
 import Button from '../../components/Button/styles';
 import Header from '../../components/Header';
@@ -13,11 +14,9 @@ import ConfirmationDialog from '../../components/ConfirmationDialog';
 import { Container } from './styles';
 
 export default function Main() {
-  const [navers, setNavers] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const [deleteNaver, setDeleteNaver] = useState(false);
-  const [confirmation, setConfirmation] = useState(false);
   const [naverID, setNaverID] = useState('');
+
+  const [state, dispatch] = useContext(Context);
 
   useEffect(() => {
     const token = localStorage.getItem('@Navedex:Token');
@@ -28,45 +27,29 @@ export default function Main() {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => setNavers(response.data));
-  }, [navers]);
+      .then((response) => {
+        dispatch({ type: 'SET_NAVERS', payload: response.data });
+      });
+  }, [state.navers]);
 
   function handleModalNaverData(id) {
-    setShowModal(true);
+    dispatch({ type: 'SET_SHOW_MODAL', payload: true });
     setNaverID(id);
   }
 
   function handleModalDeleteNaver(id) {
-    setDeleteNaver(true);
+    dispatch({ type: 'SET_DELETE_NAVER_DIALOG', payload: true });
     setNaverID(id);
   }
 
   return (
     <>
       <Header />
-      {showModal && (
-        <NaverModal
-          setShowModal={setShowModal}
-          setDeleteNaver={setDeleteNaver}
-          id={naverID}
-        />
-      )}
+      {state.showModal && <NaverModal id={naverID} />}
 
-      {deleteNaver && (
-        <DeleteDialog
-          setDeleteNaver={setDeleteNaver}
-          setConfirmation={setConfirmation}
-          setShowModal={setShowModal}
-          id={naverID}
-        />
-      )}
+      {state.deleteNaver && <DeleteDialog id={naverID} />}
 
-      {confirmation && (
-        <ConfirmationDialog
-          action="excluído"
-          setConfirmation={setConfirmation}
-        />
-      )}
+      {state.confirmation && <ConfirmationDialog action="excluído" />}
 
       <Container>
         <header>
@@ -78,7 +61,7 @@ export default function Main() {
         </header>
 
         <main>
-          {navers.map((naver) => (
+          {state.navers.map((naver) => (
             <article key={naver.id}>
               <div onClick={() => handleModalNaverData(naver.id)}>
                 <img src={naver.url} alt={naver.name} />
