@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaTrash, FaPen } from 'react-icons/fa';
 
 import api from '../../services/api';
+import { Context } from '../../store';
+
 import parseDate from '../../utils/parseDate';
 
 import Container from './styles';
 
-export default function NaverModal({ setShowModal, setDeleteNaver, id }) {
+export default function NaverModal({ id }) {
   const [naver, setNaver] = useState({});
+
+  const [, dispatch] = useContext(Context);
 
   useEffect(() => {
     async function getNaverData() {
@@ -24,11 +28,19 @@ export default function NaverModal({ setShowModal, setDeleteNaver, id }) {
       setNaver(response.data);
     }
 
+    if (!id) {
+      dispatch({ type: 'SET_SHOW_MODAL', payload: false });
+    }
+
     getNaverData();
   }, [naver, id]);
 
-  function onpenDeleteDialog() {
-    setDeleteNaver(true);
+  function handleOnpenDeleteDialog() {
+    dispatch({ type: 'SET_DELETE_NAVER_DIALOG', payload: true });
+  }
+
+  function handleCloseModal() {
+    dispatch({ type: 'SET_SHOW_MODAL', payload: false });
   }
 
   return (
@@ -39,7 +51,7 @@ export default function NaverModal({ setShowModal, setDeleteNaver, id }) {
         <section>
           <span>
             <AiOutlineClose
-              onClick={() => setShowModal(false)}
+              onClick={handleCloseModal}
               size={24}
               color="#212121"
             />
@@ -56,7 +68,11 @@ export default function NaverModal({ setShowModal, setDeleteNaver, id }) {
             <p>{naver.project}</p>
 
             <footer>
-              <FaTrash onClick={onpenDeleteDialog} size={18} color="#212121" />
+              <FaTrash
+                onClick={handleOnpenDeleteDialog}
+                size={18}
+                color="#212121"
+              />
               <Link to={`/editnaver/${naver.id}`}>
                 <FaPen size={18} color="#212121" />
               </Link>
