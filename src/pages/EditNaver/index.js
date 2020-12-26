@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 
 import api from '../../services/api';
+import { Context } from '../../store';
 
 import Button from '../../components/Button/styles';
 import Header from '../../components/Header';
@@ -16,14 +17,14 @@ import parseDate from '../../utils/parseDate';
 import { Container } from './styles';
 
 export default function EditNaver() {
+  const [state, dispatch] = useContext(Context);
+
   const [job_role, setJobRole] = useState('');
   const [admission_date, setAdmissionDate] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [project, setProject] = useState('');
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
-  const [confirmation, setConfirmation] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
 
   const [naverData, setNaverData] = useState({});
 
@@ -83,10 +84,10 @@ export default function EditNaver() {
       });
 
       if (response.status === 200) {
-        setConfirmation(true);
+        dispatch({ type: 'SET_CONFIRMATION_DIALOG', payload: true });
       }
     } catch (error) {
-      setErrorMessage(true);
+      dispatch({ type: 'SET_ERROR_DIALOG', payload: true });
     }
   }
 
@@ -94,16 +95,9 @@ export default function EditNaver() {
     <>
       <Header />
 
-      {confirmation && (
-        <ConfirmationDialog
-          action="atualizado"
-          setConfirmation={setConfirmation}
-        />
-      )}
+      {state.confirmation && <ConfirmationDialog action="atualizado" />}
 
-      {errorMessage && (
-        <ErrorDialog action="atualizar" setErrorMessage={setErrorMessage} />
-      )}
+      {state.errorMessage && <ErrorDialog action="atualizar" />}
 
       <Container>
         <header>
