@@ -6,7 +6,9 @@
   Internal employee management application - Navers
 </h3>
 
-<p align="center"></p>
+<p align="center">
+<img alt="Project user interations gif" src="https://github.com/eltonlazzarin/navedex-frontend-challenge/blob/master/screenshots/navedex-user-interations.gif" />
+</p>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/eltonlazzarin/navedex-frontend-challenge">
