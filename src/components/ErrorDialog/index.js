@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
+
+import { Context } from '../../store';
 
 import Container from './styles';
 
-export default function ConfirmationDialog({ setErrorMessage, action }) {
+export default function ConfirmationDialog({ action }) {
+  const [, dispatch] = useContext(Context);
+
+  function handleCloseErrorDialog() {
+    dispatch({ type: 'SET_ERROR_DIALOG', payload: false });
+  }
+
   return (
     <Container>
       <div>
         <span>
           <AiOutlineClose
-            onClick={() => setErrorMessage(false)}
+            onClick={handleCloseErrorDialog}
             size={24}
             color="#212121"
           />
