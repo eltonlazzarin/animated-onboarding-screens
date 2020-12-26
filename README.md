@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img alt="Nave.rs logo" src="https://github.com/eltonlazzarin/navedex-frontend-challenge/blob/master/src/assets/nave.png" height="150px" width="150px" />
+	<img alt="Nave.rs logo" src="https://github.com/eltonlazzarin/navedex-frontend-challenge/blob/master/src/assets/nave.png" height="67px" width="71px" />
 </h1>
 
 <h3 align="center">
