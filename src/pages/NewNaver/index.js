@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaChevronLeft } from 'react-icons/fa';
 
 import api from '../../services/api';
+import { Context } from '../../store';
 
 import Button from '../../components/Button/styles';
 import Header from '../../components/Header';
@@ -15,14 +16,14 @@ import dateMask from '../../utils/dateMask';
 import { Container } from './styles';
 
 export default function NewNaver() {
+  const [state, dispatch] = useContext(Context);
+
   const [job_role, setJobRole] = useState('');
   const [admission_date, setAdmissionDate] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [project, setProject] = useState('');
   const [name, setName] = useState('');
   const [url, setUrl] = useState('');
-  const [confirmation, setConfirmation] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -55,11 +56,11 @@ export default function NewNaver() {
       });
 
       if (response.status === 200) {
-        setConfirmation(true);
+        dispatch({ type: 'SET_CONFIRMATION_DIALOG', payload: true });
         cleanAllInputFields();
       }
     } catch (error) {
-      setErrorMessage(true);
+      dispatch({ type: 'SET_ERROR_DIALOG', payload: true });
     }
   }
 
@@ -67,13 +68,9 @@ export default function NewNaver() {
     <>
       <Header />
 
-      {confirmation && (
-        <ConfirmationDialog action="criado" setConfirmation={setConfirmation} />
-      )}
+      {state.confirmation && <ConfirmationDialog action="criado" />}
 
-      {errorMessage && (
-        <ErrorDialog action="criar" setErrorMessage={setErrorMessage} />
-      )}
+      {state.errorMessage && <ErrorDialog action="criar" />}
 
       <Container>
         <header>
