@@ -5,6 +5,7 @@ import { FaTrash, FaPen } from 'react-icons/fa';
 import api from '../../services/api';
 import { Context } from '../../store';
 
+import Loading from '../../components/Loading';
 import Button from '../../components/Button/styles';
 import Header from '../../components/Header';
 import NaverModal from '../../components/NaverModal';
@@ -29,6 +30,7 @@ export default function Main() {
       })
       .then((response) => {
         dispatch({ type: 'SET_NAVERS', payload: response.data });
+        dispatch({ type: 'SET_IS_LOADING', payload: false });
       });
   }, [state.navers]);
 
@@ -44,46 +46,53 @@ export default function Main() {
 
   return (
     <>
-      <Header />
-      {state.showModal && <NaverModal id={naverID} />}
+      {state.loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Header />
 
-      {state.deleteNaver && <DeleteDialog id={naverID} />}
+          {state.showModal && <NaverModal id={naverID} />}
 
-      {state.confirmation && <ConfirmationDialog action="excluído" />}
+          {state.deleteNaver && <DeleteDialog id={naverID} />}
 
-      <Container>
-        <header>
-          <h3>Navers</h3>
+          {state.confirmation && <ConfirmationDialog action="excluído" />}
 
-          <Link to="/createnaver">
-            <Button>Adicionar Naver</Button>
-          </Link>
-        </header>
+          <Container>
+            <header>
+              <h3>Navers</h3>
 
-        <main>
-          {state.navers.map((naver) => (
-            <article key={naver.id}>
-              <div onClick={() => handleModalNaverData(naver.id)}>
-                <img src={naver.url} alt={naver.name} />
-              </div>
+              <Link to="/createnaver">
+                <Button>Adicionar Naver</Button>
+              </Link>
+            </header>
 
-              <strong>{naver.name}</strong>
-              <p>{naver.job_role}</p>
+            <main>
+              {state.navers.map((naver) => (
+                <article key={naver.id}>
+                  <div onClick={() => handleModalNaverData(naver.id)}>
+                    <img src={naver.url} alt={naver.name} />
+                  </div>
 
-              <footer>
-                <FaTrash
-                  onClick={() => handleModalDeleteNaver(naver.id)}
-                  size={18}
-                  color="#212121"
-                />
-                <Link to={`/editnaver/${naver.id}`}>
-                  <FaPen size={18} color="#212121" />
-                </Link>
-              </footer>
-            </article>
-          ))}
-        </main>
-      </Container>
+                  <strong>{naver.name}</strong>
+                  <p>{naver.job_role}</p>
+
+                  <footer>
+                    <FaTrash
+                      onClick={() => handleModalDeleteNaver(naver.id)}
+                      size={18}
+                      color="#212121"
+                    />
+                    <Link to={`/editnaver/${naver.id}`}>
+                      <FaPen size={18} color="#212121" />
+                    </Link>
+                  </footer>
+                </article>
+              ))}
+            </main>
+          </Container>
+        </>
+      )}
     </>
   );
 }
