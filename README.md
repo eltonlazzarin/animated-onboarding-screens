@@ -7,10 +7,6 @@
 </h3>
 
 <p align="center">
-<img alt="Project user interations gif" src="https://github.com/eltonlazzarin/navedex-frontend-challenge/blob/master/screenshots/navedex-user-interations.gif" />
-</p>
-
-<p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/eltonlazzarin/navedex-frontend-challenge">
 
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/eltonlazzarin/navedex-frontend-challenge">
@@ -31,6 +27,10 @@
 </p>
 
 ## 👨🏻‍💻 About the project
+
+<p align="center">
+<img alt="Project user interations gif" src="https://github.com/eltonlazzarin/navedex-frontend-challenge/blob/master/screenshots/navedex-user-interations.gif" />
+</p>
 
 <p>Navedex is a web application developed with ReactJS and aims to do the internal management of collaborators called Navers. With this application, only authorized users, through login, will be able to create, list, edit and delete the Navers, in addition to being able to view more details of a specific Naver.</p>
 
