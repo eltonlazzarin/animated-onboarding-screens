@@ -5,6 +5,12 @@ const Reducer = (state, action) => {
         ...state,
         navers: action.payload,
       };
+    case 'SET_IS_LOADING': {
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    }
     case 'SET_SHOW_MODAL':
       return {
         ...state,
