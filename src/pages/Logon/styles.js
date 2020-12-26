@@ -51,7 +51,7 @@ export const Container = styled.div`
 
     input,
     button {
-      width: 18.75rem;
+      width: 16.5rem;
     }
   }
 `;
