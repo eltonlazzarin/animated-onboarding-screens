@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaTrash, FaPen } from 'react-icons/fa';
@@ -7,13 +7,12 @@ import api from '../../services/api';
 import { Context } from '../../store';
 
 import parseDate from '../../utils/parseDate';
+import parseDateToYearMonth from '../../utils/parseDateToYearMonth';
 
 import Container from './styles';
 
 export default function NaverModal({ id }) {
-  const [naver, setNaver] = useState({});
-
-  const [, dispatch] = useContext(Context);
+  const [state, dispatch] = useContext(Context);
 
   useEffect(() => {
     async function getNaverData() {
@@ -25,7 +24,7 @@ export default function NaverModal({ id }) {
         },
       });
 
-      setNaver(response.data);
+      dispatch({ type: 'SET_SINGLE_NAVER', payload: response.data });
     }
 
     if (!id) {
@@ -33,7 +32,7 @@ export default function NaverModal({ id }) {
     }
 
     getNaverData();
-  }, [naver, id]);
+  }, [state.naver, id]);
 
   function handleOnpenDeleteDialog() {
     dispatch({ type: 'SET_DELETE_NAVER_DIALOG', payload: true });
@@ -46,7 +45,7 @@ export default function NaverModal({ id }) {
   return (
     <Container>
       <div>
-        <img src={naver.url} alt={naver.name} />
+        <img src={state.naver.url} alt={state.naver.name} />
 
         <section>
           <span>
@@ -58,14 +57,14 @@ export default function NaverModal({ id }) {
           </span>
 
           <main>
-            <h2>{naver.name}</h2>
-            <p>{naver.job_role}</p>
+            <h2>{state.naver.name}</h2>
+            <p>{state.naver.job_role}</p>
             <strong>Idade</strong>
-            <p>{parseDate(naver.birthdate)}</p>
+            <p>{parseDateToYearMonth(parseDate(state.naver.birthdate))}</p>
             <strong>Tempo de empresa</strong>
-            <p>{parseDate(naver.admission_date)}</p>
+            <p>{parseDateToYearMonth(parseDate(state.naver.admission_date))}</p>
             <strong>Projetos que participou</strong>
-            <p>{naver.project}</p>
+            <p>{state.naver.project}</p>
 
             <footer>
               <FaTrash
@@ -73,7 +72,7 @@ export default function NaverModal({ id }) {
                 size={18}
                 color="#212121"
               />
-              <Link to={`/editnaver/${naver.id}`}>
+              <Link to={`/editnaver/${state.naver.id}`}>
                 <FaPen size={18} color="#212121" />
               </Link>
             </footer>
