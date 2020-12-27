@@ -5,6 +5,7 @@ const initialState = {
   loading: true,
   navers: [],
   showModal: false,
+  naver: {},
   confirmation: false,
   deleteNaver: false,
   errorMessage: false,
