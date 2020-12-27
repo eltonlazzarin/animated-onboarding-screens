@@ -16,6 +16,11 @@ const Reducer = (state, action) => {
         ...state,
         showModal: action.payload,
       };
+    case 'SET_SINGLE_NAVER':
+      return {
+        ...state,
+        naver: action.payload,
+      };
     case 'SET_CONFIRMATION_DIALOG':
       return {
         ...state,
