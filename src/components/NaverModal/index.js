@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 import { FaTrash, FaPen } from 'react-icons/fa';
 
+import image from '../../assets/background-image.png';
+
 import api from '../../services/api';
 import { Context } from '../../store';
 
@@ -45,7 +47,14 @@ export default function NaverModal({ id }) {
   return (
     <Container>
       <div>
-        <img src={state.naver.url} alt={state.naver.name} />
+        <img
+          src={state.naver.url}
+          alt={state.naver.name}
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = image;
+          }}
+        />
 
         <section>
           <span>

@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FaTrash, FaPen } from 'react-icons/fa';
 
+import image from '../../assets/background-image.png';
+
 import { Context } from '../../store';
 
 import EmptyNaverList from '../EmptyNaverList';
@@ -30,7 +32,14 @@ export default function NaverList({ setNaverID }) {
           {state.navers.map((naver) => (
             <article key={naver.id}>
               <div onClick={() => handleModalNaverData(naver.id)}>
-                <img src={naver.url} alt={naver.name} />
+                <img
+                  src={naver.url}
+                  alt={naver.name}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = image;
+                  }}
+                />
               </div>
 
               <strong>{naver.name}</strong>
